@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" role="img" aria-label="Developer Tool Box wordmark">
+  <rect width="64" height="64" rx="14" fill="#070b0a"/>
+  <rect x="12" y="18" width="40" height="30" rx="6" fill="#0d1512" stroke="#3ecf8e" stroke-opacity="0.8"/>
+  <path d="M24 29l-6 5 6 5M40 29l6 5-6 5" fill="none" stroke="#f4faf7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M34 26l-5 16" stroke="#3ecf8e" stroke-width="3" stroke-linecap="round"/>
+  <text x="80" y="39" fill="#f4faf7" font-family="Arial, sans-serif" font-size="22" font-weight="700">Developer <tspan fill="#3ecf8e">Tool Box</tspan></text>
+</svg>

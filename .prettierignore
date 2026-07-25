@@ -1,0 +1,10 @@
+node_modules
+.next
+coverage
+playwright-report
+test-results
+it-tools-main
+animate-ui-main
+inspira-ui-main
+lenis-main
+pnpm-lock.yaml
