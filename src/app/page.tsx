@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ToolCard } from '@/components/tools/tool-card';
+import { CategoryIcon } from '@/components/tools/tool-icon';
 import { categories, popularTools, tools } from '@/features/tools/registry';
 
 export default function HomePage() {
@@ -55,7 +56,8 @@ export default function HomePage() {
               href={`/categories/${category.slug}`}
               className="card p-5 hover:border-[var(--border-strong)]"
             >
-              <p className="font-heading font-semibold">{category.name}</p>
+              <CategoryIcon category={category.slug} />
+              <p className="mt-4 font-heading font-semibold">{category.name}</p>
               <p className="mt-2 text-sm text-[var(--text-secondary)]">{category.description}</p>
               <p className="mt-4 text-sm text-primary">
                 {tools.filter((tool) => tool.category === category.slug).length} tools

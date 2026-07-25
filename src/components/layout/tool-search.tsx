@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { categories, popularTools, tools } from '@/features/tools/registry';
+import { ToolIcon } from '@/components/tools/tool-icon';
 
 export function ToolSearch() {
   const [open, setOpen] = useState(false);
@@ -112,12 +113,19 @@ export function ToolSearch() {
                         className="rounded-2xl border border-transparent p-4 hover:border-[var(--border-strong)] hover:bg-white/5 focus:border-[var(--border-strong)]"
                       >
                         <span className="flex items-start justify-between gap-4">
-                          <span>
-                            <span className="block font-heading text-sm font-semibold">
-                              {tool.name}
-                            </span>
-                            <span className="mt-1 block text-sm text-[var(--text-secondary)]">
-                              {tool.shortDescription}
+                          <span className="flex items-start gap-3">
+                            <ToolIcon
+                              slug={tool.slug}
+                              category={tool.category}
+                              className="size-9 rounded-xl"
+                            />
+                            <span>
+                              <span className="block font-heading text-sm font-semibold">
+                                {tool.name}
+                              </span>
+                              <span className="mt-1 block text-sm text-[var(--text-secondary)]">
+                                {tool.shortDescription}
+                              </span>
                             </span>
                           </span>
                           <span className="shrink-0 rounded-full bg-white/5 px-2 py-1 text-xs text-[var(--text-muted)]">
