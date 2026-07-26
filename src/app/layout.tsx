@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   manifest: '/manifest.webmanifest',
+  verification: {
+    google: 'Xe-aFPI5BwQ0bQlMvdfDnez88TssJiUdadf6qW12_HE',
+  },
   openGraph: {
     title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
