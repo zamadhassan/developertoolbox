@@ -4,12 +4,12 @@ export default function Page() {
     <main className="container prose-content py-14">
       <h1 className="font-heading text-4xl">Cookie Policy</h1>
       <p>
-        The current local implementation does not require advertising or analytics cookies. Browser
-        storage may later be used for favorites and recent tools.
+        Core Developer Tool Box pages do not require account cookies. Browser storage may be used in
+        future for optional preferences such as favorites or recent tools.
       </p>
       <p>
-        If analytics or advertising is enabled, cookie and consent behavior must be documented
-        before production use.
+        Advertising is loaded only when AdSense is configured. When enabled, Google may use cookies
+        or similar technologies for ad delivery, personalization, fraud prevention and measurement.
       </p>
     </main>
   );

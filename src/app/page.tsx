@@ -15,27 +15,27 @@ export default function HomePage() {
             Everyday Developer Tools, All in One Place.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
-            Developer Tool Box is a focused directory of practical utilities for formatting,
-            encoding, decoding, conversion, generators and software development workflows.
+            Developer Tool Box gives you practical browser utilities for formatting, encoding,
+            decoding, conversion, generators and everyday software development workflows.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/tools"
+              href="/tools/json-prettify"
               className="rounded-full bg-primary px-6 py-3 font-semibold text-black hover:bg-[var(--primary-hover)]"
             >
-              Explore All Tools
+              Format JSON Now
             </Link>
             <Link
-              href="/categories/development"
+              href="/tools"
               className="rounded-full border border-white/10 px-6 py-3 font-semibold"
             >
-              Browse Categories
+              Explore All Tools
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap gap-3 text-sm text-[var(--text-secondary)]">
             <span>No account required</span>
-            <span>Fast browser workflows</span>
-            <span>{tools.length} inventoried tools</span>
+            <span>Local-first browser workflows</span>
+            <span>{popularTools.length} popular live tools</span>
           </div>
         </div>
       </section>
@@ -71,8 +71,8 @@ export default function HomePage() {
           <div>
             <h2 className="font-heading text-2xl font-semibold">All tools</h2>
             <p className="mt-2 text-sm text-[var(--text-secondary)]">
-              Every inventoried tool is listed on the homepage with a live browser workspace and a
-              permanent URL.
+              Every tool page has a permanent URL. Live tools are ready to use, and preview tools
+              are labeled separately while full behavior is completed.
             </p>
           </div>
           <Link href="/tools" className="text-sm font-semibold text-primary hover:text-white">

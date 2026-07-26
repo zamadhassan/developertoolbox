@@ -11,7 +11,7 @@ const schema = z.object({
   consent: z.literal(true),
 });
 
-export function ContactForm() {
+export function ContactForm({ email }: { email: string }) {
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   return (
@@ -20,16 +20,27 @@ export function ContactForm() {
       onSubmit={(event) => {
         event.preventDefault();
         const data = Object.fromEntries(new FormData(event.currentTarget));
+        if (data.company) {
+          setStatus('Thanks. If a reply is needed, we will follow up by email.');
+          setError('');
+          return;
+        }
         const result = schema.safeParse({ ...data, consent: data.consent === 'on' });
         if (!result.success) {
           setError('Please complete all required fields with valid information.');
           setStatus('');
           return;
         }
+        const body = [
+          `Name: ${result.data.name}`,
+          `Email: ${result.data.email}`,
+          '',
+          result.data.message,
+        ].join('\n');
+        const mailto = `mailto:${email}?subject=${encodeURIComponent(result.data.subject)}&body=${encodeURIComponent(body)}`;
         setError('');
-        setStatus(
-          'Local development fallback: no message was sent because no email provider is configured yet.',
-        );
+        setStatus('Opening your email app so you can review and send the message.');
+        window.location.href = mailto;
       }}
     >
       <input name="company" className="hidden" tabIndex={-1} autoComplete="off" />
@@ -57,8 +68,8 @@ export function ContactForm() {
         />
       </label>
       <label className="flex gap-3 text-sm text-[var(--text-secondary)]">
-        <input name="consent" type="checkbox" /> I understand this local form may require production
-        email configuration before delivery.
+        <input name="consent" type="checkbox" /> I understand this will open my email app and no
+        secrets or sensitive tool input should be included.
       </label>
       {error ? (
         <p role="alert" className="text-red-200">
@@ -71,7 +82,7 @@ export function ContactForm() {
         </p>
       ) : null}
       <button className="w-fit rounded-full bg-primary px-5 py-2.5 font-semibold text-black">
-        Submit
+        Open Email Draft
       </button>
     </form>
   );

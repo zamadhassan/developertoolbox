@@ -175,7 +175,7 @@ function roman(value: number) {
 }
 
 function fallback(tool: ToolDefinition, input: string) {
-  return `${tool.name} is live.\n\nInput received:\n${input || '(empty)'}\n\nThis browser workspace provides a safe baseline interaction for ${tool.shortDescription.toLowerCase()} Advanced parity behavior is tracked in the migration matrix.`;
+  return `${tool.name} preview.\n\nInput received:\n${input || '(empty)'}\n\nThis preview confirms the page and input flow. Full tool-specific behavior is still being completed, so do not rely on this output for production work.`;
 }
 
 export function ToolRunner({ tool }: { tool: ToolDefinition }) {
@@ -436,6 +436,12 @@ export function ToolRunner({ tool }: { tool: ToolDefinition }) {
 
   return (
     <section className="card p-5 md:p-6" aria-label={`${tool.name} workspace`}>
+      {!tool.migrated ? (
+        <p className="mb-5 rounded-2xl border border-[var(--warning)]/30 bg-[var(--warning)]/10 p-4 text-sm text-[var(--warning)]">
+          Preview tool: this page is available for discovery, but full tool-specific behavior is
+          still being completed.
+        </p>
+      ) : null}
       <div className="grid gap-5 lg:grid-cols-2">
         <label className="grid gap-2 text-sm font-medium">
           Input

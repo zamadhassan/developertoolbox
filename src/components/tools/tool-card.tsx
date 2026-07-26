@@ -5,6 +5,7 @@ import { ToolIcon } from './tool-icon';
 
 export function ToolCard({ tool }: { tool: ToolDefinition }) {
   const category = categories.find((item) => item.slug === tool.category);
+  const statusLabel = tool.migrated ? 'Live' : 'Preview';
   return (
     <Link
       href={`/tools/${tool.slug}`}
@@ -21,7 +22,7 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
           </div>
         </div>
         <span className="rounded-full bg-[var(--primary-soft)] px-2 py-1 text-xs text-primary">
-          Live
+          {statusLabel}
         </span>
       </div>
       <p className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">

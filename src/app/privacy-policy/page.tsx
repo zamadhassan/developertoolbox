@@ -13,8 +13,13 @@ export default function Page() {
         behavior.
       </p>
       <p>
-        Analytics, advertising and contact email delivery are disabled unless configured by the site
-        owner. If enabled later, this policy must be updated to describe those services accurately.
+        Advertising is only loaded when a valid AdSense publisher configuration is present. If ads
+        are enabled, Google may use cookies or similar technologies to serve and measure ads subject
+        to its own policies.
+      </p>
+      <p>
+        The contact page opens a user-controlled email draft. Messages are sent only if you choose
+        to send them from your email application.
       </p>
     </main>
   );

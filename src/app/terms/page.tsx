@@ -12,8 +12,8 @@ export default function Page() {
         components remain governed by their respective licenses.
       </p>
       <p>
-        These terms are not legal advice and should be reviewed by the site owner before production
-        launch.
+        Preview tools are labeled separately from live tools. Preview outputs are provided for early
+        evaluation and should not be relied on for production decisions.
       </p>
     </main>
   );

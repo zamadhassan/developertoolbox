@@ -12,8 +12,8 @@ export default function ToolsPage() {
     <div className="container py-14">
       <h1 className="font-heading text-4xl font-semibold">All developer tools</h1>
       <p className="mt-4 max-w-3xl text-[var(--text-secondary)]">
-        Browse {tools.length} inventoried tools from the migration plan. Every tool has a live
-        browser workspace and a permanent URL.
+        Browse {tools.length} developer utility pages. Live tools are ready to use, while preview
+        pages are clearly marked as full behavior is completed.
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
         {categories.map((category) => (

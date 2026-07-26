@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { LenisProvider } from '@/components/motion/lenis-provider';
+import { AdsenseScript } from '@/components/ads/adsense-script';
 import { siteConfig } from '@/config/site';
 
 const heading = Unbounded({ subsets: ['latin'], variable: '--font-heading', display: 'swap' });
@@ -26,12 +27,16 @@ export const metadata: Metadata = {
     title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
   },
+  other: siteConfig.ads.clientId
+    ? { 'google-adsense-account': siteConfig.ads.clientId }
+    : undefined,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
       <body>
+        <AdsenseScript />
         <LenisProvider>
           <Header />
           <main id="main">{children}</main>

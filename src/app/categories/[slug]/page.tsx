@@ -32,7 +32,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <div className="container py-14">
       <h1 className="font-heading text-4xl font-semibold">{category.name} tools</h1>
       <p className="mt-4 max-w-3xl text-[var(--text-secondary)]">
-        {category.description} This category contains {categoryTools.length} inventoried tools.
+        {category.description} This category contains {categoryTools.length} tool pages.
       </p>
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {categoryTools.map((tool) => (
@@ -43,7 +43,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <h2>Common tasks</h2>
         <p>
           Use this category to find focused tools for recurring development tasks. Each listed tool
-          includes an interactive browser workspace.
+          is marked as live or preview so you know what is ready before you start.
         </p>
         <h2>FAQ</h2>
         <p>

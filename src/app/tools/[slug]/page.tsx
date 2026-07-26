@@ -29,6 +29,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const tool = getTool(slug);
   if (!tool) notFound();
   const category = categories.find((item) => item.slug === tool.category);
+  const toolStatus = tool.migrated ? 'live tool' : 'basic preview';
   return (
     <div className="container py-12">
       <nav className="text-sm text-[var(--text-muted)]">
@@ -37,7 +38,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       </nav>
       <header className="mt-8 max-w-3xl">
         <p className="text-sm text-primary">
-          {category?.name} · {tool.processingMode} processing · live tool
+          {category?.name} · {tool.processingMode} processing · {toolStatus}
         </p>
         <h1 className="mt-3 font-heading text-4xl font-semibold">{tool.name}</h1>
         <p className="mt-4 text-lg leading-8 text-[var(--text-secondary)]">
@@ -67,6 +68,12 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           Completed browser tools are designed not to intentionally send input to the server. Do not
           paste secrets unless you understand the tool behavior and limitations.
         </p>
+        {!tool.migrated ? (
+          <p>
+            This page is currently a preview. Full tool-specific behavior is still being completed,
+            so verify results with another source before relying on them.
+          </p>
+        ) : null}
         <h2>FAQs</h2>
         {tool.content.faqs.map((faq) => (
           <p key={faq.question}>

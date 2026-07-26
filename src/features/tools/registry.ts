@@ -85,11 +85,11 @@ const pilotContent = (name: string, purpose: string): ToolDefinition['content'] 
 });
 
 const plannedContent = (name: string): ToolDefinition['content'] => ({
-  introduction: `${name} is available as a browser-based Developer Tool Box workspace. Complex tools may use a focused safe implementation while deeper source parity work continues.`,
+  introduction: `${name} is available as a basic Developer Tool Box preview while full tool behavior is still being completed.`,
   howItWorks: [
     {
       title: 'Use the workspace',
-      description: 'Enter input, run the tool and review the generated output or guidance.',
+      description: 'Enter input, run the preview and review the generated output or guidance.',
     },
   ],
   useCases: ['Run common developer utility workflows in the browser.'],
@@ -97,7 +97,7 @@ const plannedContent = (name: string): ToolDefinition['content'] => ({
     {
       question: `Is ${name} available?`,
       answer:
-        'Yes. The page includes an interactive browser workspace. Some advanced parity details are still tracked in the migration documentation.',
+        'A basic preview page is available. Full behavior is still being completed and should be verified before relying on the result.',
     },
   ],
 });
@@ -110,7 +110,7 @@ const tool = (
   ...input,
   longDescription: input.migrated
     ? `${input.name} provides ${input.purpose} with a privacy-aware browser workflow.`
-    : `${input.name} provides a browser-based workspace for ${input.purpose}.`,
+    : `${input.name} provides a basic preview for ${input.purpose} while full behavior is being completed.`,
   metadata: {
     title: `${input.name} Online - Free Developer Tool`,
     description: input.shortDescription,
