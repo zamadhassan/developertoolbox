@@ -1,4 +1,8 @@
-export const metadata = { title: 'Editorial Policy' };
+export const metadata = {
+  title: 'Editorial Policy',
+  description: 'Editorial standards for Developer Tool Box technical content.',
+  alternates: { canonical: '/editorial-policy' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

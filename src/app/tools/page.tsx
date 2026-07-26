@@ -1,10 +1,24 @@
 import type { Metadata } from 'next';
 import { ToolCard } from '@/components/tools/tool-card';
 import { categories, tools } from '@/features/tools/registry';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'All Developer Tools',
   description: 'Browse every Developer Tool Box utility by category and migration status.',
+  alternates: { canonical: '/tools' },
+  openGraph: {
+    title: 'All Developer Tools',
+    description: 'Browse every Developer Tool Box utility by category and migration status.',
+    url: '/tools',
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'All Developer Tools',
+    description: 'Browse every Developer Tool Box utility by category and migration status.',
+  },
 };
 
 export default function ToolsPage() {

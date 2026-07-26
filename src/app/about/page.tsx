@@ -1,6 +1,17 @@
 export const metadata = {
   title: 'About',
   description: 'Learn what Developer Tool Box is and how tools are selected.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'About Developer Tool Box',
+    description: 'Learn what Developer Tool Box is and how tools are selected.',
+    url: '/about',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Developer Tool Box',
+    description: 'Learn what Developer Tool Box is and how tools are selected.',
+  },
 };
 
 export default function AboutPage() {

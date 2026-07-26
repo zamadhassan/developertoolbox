@@ -273,7 +273,7 @@ export const tools: ToolDefinition[] = [
       slug,
       name,
       category: category as ToolDefinition['category'],
-      shortDescription: `${name} is part of the Developer Tool Box migration inventory.`,
+      shortDescription: `${name} preview is available while the full browser tool is completed.`,
       keywords: slug.split('-'),
       processingMode: 'client',
       migrated: false,

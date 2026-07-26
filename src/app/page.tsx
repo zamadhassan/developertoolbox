@@ -1,9 +1,31 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ToolCard } from '@/components/tools/tool-card';
 import { CategoryIcon } from '@/components/tools/tool-icon';
-import { categories, popularTools, tools } from '@/features/tools/registry';
+import { categories, migratedTools, popularTools } from '@/features/tools/registry';
+import { siteConfig } from '@/config/site';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    url: '/',
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+  },
+};
 
 export default function HomePage() {
+  const liveCategories = categories.filter((category) =>
+    migratedTools.some((tool) => tool.category === category.slug),
+  );
+
   return (
     <div>
       <section className="container py-20 md:py-28">
@@ -50,7 +72,7 @@ export default function HomePage() {
       <section className="container py-10">
         <h2 className="font-heading text-2xl font-semibold">Tool categories</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category) => (
+          {liveCategories.map((category) => (
             <Link
               key={category.slug}
               href={`/categories/${category.slug}`}
@@ -60,29 +82,27 @@ export default function HomePage() {
               <p className="mt-4 font-heading font-semibold">{category.name}</p>
               <p className="mt-2 text-sm text-[var(--text-secondary)]">{category.description}</p>
               <p className="mt-4 text-sm text-primary">
-                {tools.filter((tool) => tool.category === category.slug).length} tools
+                {migratedTools.filter((tool) => tool.category === category.slug).length} live tools
               </p>
             </Link>
           ))}
         </div>
       </section>
       <section className="container py-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="card flex flex-wrap items-center justify-between gap-5 p-6">
           <div>
-            <h2 className="font-heading text-2xl font-semibold">All tools</h2>
+            <h2 className="font-heading text-2xl font-semibold">Need the complete directory?</h2>
             <p className="mt-2 text-sm text-[var(--text-secondary)]">
-              Every tool page has a permanent URL. Live tools are ready to use, and preview tools
-              are labeled separately while full behavior is completed.
+              The full tools directory includes live tools and clearly labeled previews while new
+              utilities are completed.
             </p>
           </div>
-          <Link href="/tools" className="text-sm font-semibold text-primary hover:text-white">
+          <Link
+            href="/tools"
+            className="rounded-full border border-white/10 px-5 py-2.5 text-sm font-semibold text-primary hover:text-white"
+          >
             Open full directory
           </Link>
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {tools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} />
-          ))}
         </div>
       </section>
       <section className="container py-10 prose-content">

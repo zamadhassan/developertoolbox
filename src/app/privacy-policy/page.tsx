@@ -1,4 +1,8 @@
-export const metadata = { title: 'Privacy Policy' };
+export const metadata = {
+  title: 'Privacy Policy',
+  description: 'How Developer Tool Box handles tool input, logs, advertising and contact email.',
+  alternates: { canonical: '/privacy-policy' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

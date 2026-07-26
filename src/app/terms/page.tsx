@@ -1,4 +1,8 @@
-export const metadata = { title: 'Terms' };
+export const metadata = {
+  title: 'Terms',
+  description: 'Terms for using Developer Tool Box browser utilities and preview tools.',
+  alternates: { canonical: '/terms' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

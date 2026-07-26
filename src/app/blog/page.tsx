@@ -4,6 +4,17 @@ import { posts } from '@/lib/blog';
 export const metadata = {
   title: 'Blog',
   description: 'Developer Tool Box articles and practical developer utility guides.',
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Developer Tool Box Blog',
+    description: 'Developer Tool Box articles and practical developer utility guides.',
+    url: '/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Developer Tool Box Blog',
+    description: 'Developer Tool Box articles and practical developer utility guides.',
+  },
 };
 export default function BlogPage() {
   return (

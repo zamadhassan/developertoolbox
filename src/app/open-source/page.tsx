@@ -1,4 +1,8 @@
-export const metadata = { title: 'Open Source Notices' };
+export const metadata = {
+  title: 'Open Source Notices',
+  description: 'Open-source licensing and third-party notice information for Developer Tool Box.',
+  alternates: { canonical: '/open-source' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

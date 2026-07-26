@@ -16,10 +16,26 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = getCategory(slug);
   if (!category) return {};
+  const categoryTools = getToolsByCategory(category.slug);
+  const hasLiveTools = categoryTools.some((tool) => tool.migrated);
+  const url = `/categories/${category.slug}`;
   return {
     title: `${category.name} Tools`,
     description: category.description,
-    alternates: { canonical: `${siteConfig.domain}/categories/${category.slug}` },
+    alternates: { canonical: url },
+    robots: hasLiveTools ? undefined : { index: false, follow: true },
+    openGraph: {
+      title: `${category.name} Tools`,
+      description: category.description,
+      url,
+      siteName: siteConfig.name,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${category.name} Tools`,
+      description: category.description,
+    },
   };
 }
 

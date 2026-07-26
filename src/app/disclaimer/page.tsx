@@ -1,4 +1,8 @@
-export const metadata = { title: 'Disclaimer' };
+export const metadata = {
+  title: 'Disclaimer',
+  description: 'Limitations and safety notes for Developer Tool Box utilities.',
+  alternates: { canonical: '/disclaimer' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

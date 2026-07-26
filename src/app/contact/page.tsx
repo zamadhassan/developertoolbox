@@ -4,6 +4,17 @@ import { siteConfig } from '@/config/site';
 export const metadata = {
   title: 'Contact',
   description: 'Contact Developer Tool Box for bugs, features and general inquiries.',
+  alternates: { canonical: '/contact' },
+  openGraph: {
+    title: 'Contact Developer Tool Box',
+    description: 'Contact Developer Tool Box for bugs, features and general inquiries.',
+    url: '/contact',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Developer Tool Box',
+    description: 'Contact Developer Tool Box for bugs, features and general inquiries.',
+  },
 };
 
 export default function ContactPage() {

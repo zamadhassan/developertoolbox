@@ -1,4 +1,8 @@
-export const metadata = { title: 'Cookie Policy' };
+export const metadata = {
+  title: 'Cookie Policy',
+  description: 'Cookie and advertising technology notes for Developer Tool Box.',
+  alternates: { canonical: '/cookie-policy' },
+};
 export default function Page() {
   return (
     <main className="container prose-content py-14">

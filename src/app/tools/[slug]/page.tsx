@@ -17,10 +17,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) return {};
+  const url = `/tools/${tool.slug}`;
   return {
     title: tool.metadata.title,
     description: tool.metadata.description,
-    alternates: { canonical: `${siteConfig.domain}/tools/${tool.slug}` },
+    alternates: { canonical: url },
+    robots: tool.migrated ? undefined : { index: false, follow: true },
+    openGraph: {
+      title: tool.metadata.title,
+      description: tool.metadata.description,
+      url,
+      siteName: siteConfig.name,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: tool.metadata.title,
+      description: tool.metadata.description,
+    },
   };
 }
 
@@ -30,8 +44,40 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   if (!tool) notFound();
   const category = categories.find((item) => item.slug === tool.category);
   const toolStatus = tool.migrated ? 'live tool' : 'basic preview';
+  const toolUrl = `${siteConfig.domain}/tools/${tool.slug}`;
+  const toolJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: tool.name,
+    url: toolUrl,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Web Browser',
+    description: tool.metadata.description,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  };
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.domain },
+      { '@type': 'ListItem', position: 2, name: 'Tools', item: `${siteConfig.domain}/tools` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: category?.name ?? 'Category',
+        item: `${siteConfig.domain}/categories/${tool.category}`,
+      },
+      { '@type': 'ListItem', position: 4, name: tool.name, item: toolUrl },
+    ],
+  };
   return (
     <div className="container py-12">
+      {tool.migrated ? (
+        <>
+          <script type="application/ld+json">{JSON.stringify(toolJsonLd)}</script>
+          <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
+        </>
+      ) : null}
       <nav className="text-sm text-[var(--text-muted)]">
         <Link href="/">Home</Link> / <Link href="/tools">Tools</Link> /{' '}
         <Link href={`/categories/${tool.category}`}>{category?.name}</Link> / {tool.name}
