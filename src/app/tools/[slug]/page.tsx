@@ -22,7 +22,6 @@ export async function generateMetadata({
     title: tool.metadata.title,
     description: tool.metadata.description,
     alternates: { canonical: url },
-    robots: tool.migrated ? undefined : { index: false, follow: true },
     openGraph: {
       title: tool.metadata.title,
       description: tool.metadata.description,
@@ -72,12 +71,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   };
   return (
     <div className="container py-12">
-      {tool.migrated ? (
-        <>
-          <script type="application/ld+json">{JSON.stringify(toolJsonLd)}</script>
-          <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
-        </>
-      ) : null}
+      <script type="application/ld+json">{JSON.stringify(toolJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
       <nav className="text-sm text-[var(--text-muted)]">
         <Link href="/">Home</Link> / <Link href="/tools">Tools</Link> /{' '}
         <Link href={`/categories/${tool.category}`}>{category?.name}</Link> / {tool.name}

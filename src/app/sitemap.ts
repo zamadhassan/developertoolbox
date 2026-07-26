@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
-import { categories, migratedTools } from '@/features/tools/registry';
+import { categories, tools } from '@/features/tools/registry';
 import { posts } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,18 +17,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/editorial-policy',
     '/open-source',
   ];
-  const liveCategories = categories.filter((category) =>
-    migratedTools.some((tool) => tool.category === category.slug),
-  );
   const lastModified = new Date('2026-07-26');
 
   return [
     ...base.map((path) => ({ url: `${siteConfig.domain}${path}`, lastModified })),
-    ...migratedTools.map((tool) => ({
+    ...tools.map((tool) => ({
       url: `${siteConfig.domain}/tools/${tool.slug}`,
       lastModified,
     })),
-    ...liveCategories.map((category) => ({
+    ...categories.map((category) => ({
       url: `${siteConfig.domain}/categories/${category.slug}`,
       lastModified,
     })),

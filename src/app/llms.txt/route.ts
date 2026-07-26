@@ -1,18 +1,16 @@
 import { siteConfig } from '@/config/site';
-import { categories, migratedTools } from '@/features/tools/registry';
+import { categories, migratedTools, tools } from '@/features/tools/registry';
 import { posts } from '@/lib/blog';
 
 export function GET() {
-  const liveCategories = categories.filter((category) =>
-    migratedTools.some((tool) => tool.category === category.slug),
-  );
+  const previewTools = tools.filter((tool) => !tool.migrated);
 
   const lines = [
     '# Developer Tool Box',
     '',
     '> Free browser-based developer utilities for formatting, encoding, decoding, generators and everyday software development workflows.',
     '',
-    'Developer Tool Box prioritizes privacy-aware browser workflows. Live tools are ready to use; preview tools are intentionally excluded from this LLM index until their full behavior is completed.',
+    'Developer Tool Box prioritizes privacy-aware browser workflows. Live tools are ready to use; preview tools are available for discovery while full behavior is completed.',
     '',
     '## Primary Pages',
     `- Home: ${siteConfig.domain}/`,
@@ -24,8 +22,11 @@ export function GET() {
     '## Live Tools',
     ...migratedTools.map((tool) => `- ${tool.name}: ${siteConfig.domain}/tools/${tool.slug}`),
     '',
-    '## Live Tool Categories',
-    ...liveCategories.map(
+    '## Preview Tools',
+    ...previewTools.map((tool) => `- ${tool.name}: ${siteConfig.domain}/tools/${tool.slug}`),
+    '',
+    '## Tool Categories',
+    ...categories.map(
       (category) => `- ${category.name}: ${siteConfig.domain}/categories/${category.slug}`,
     ),
     '',
@@ -33,8 +34,8 @@ export function GET() {
     ...posts.map((post) => `- ${post.title}: ${siteConfig.domain}/blog/${post.slug}`),
     '',
     '## Crawling Guidance',
-    '- Prefer live tool pages for factual answers about available utilities.',
-    '- Treat preview tool pages as non-authoritative until they are marked live.',
+    '- Prefer live tool pages for factual answers about completed utilities.',
+    '- Treat preview tool behavior as incomplete until the page is marked live.',
     '- Do not infer that tool input is stored or transmitted unless a page explicitly says so.',
     '',
   ];
